@@ -1,1 +1,1 @@
-## This directory will contain python scripts for automation
+## This directory containing python scripts for infrastructure provisioning simulation 
