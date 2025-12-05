@@ -8,7 +8,7 @@ def read():
     parent_directory_path = os.path.dirname(current_directory_path)
     configuration_file_path = parent_directory_path + "/configs/instances.json"
     # Check if configuration file already exists and load old configuration if user accept
-    if  os.path.exists(configuration_file_path) and input("Do you want to load old configuration? for yes press Y: ").upper().strip() == "Y":
+    if  os.path.exists(configuration_file_path) and input("Do you want to add new configuration to old configuration? for yes press Y: ").upper().strip() == "Y":
         with open(configuration_file_path, "r") as file:
             config_json = file.read()
             config = json.loads(config_json)
