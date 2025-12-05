@@ -6,8 +6,7 @@ import re
 import file_utils
 
 # Configure logging
-logging.basicConfig(filename='./logs/provisioning.log',
-                    format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', handlers = [logging.FileHandler('./logs/provisioning.log')])
 
 
 def get_user_input():
@@ -46,7 +45,7 @@ def get_user_input():
         if cpu.isnumeric():
             break
         logging.warning("Number of CPU's is not a number")
-        print("It should be a number. Please try again.")
+        print("Number of CPU's should be a number. Please try again.")
     machine_data["cpu"] = int(cpu)
 
     # Get RAM capacity
@@ -57,7 +56,7 @@ def get_user_input():
         if re.match(r"^\d+(\.\d+)?$", ram):
             break
         logging.warning("Invalid RAM capacity")
-        print("It should be a number. Please try again.")
+        print("RAM should be a number. Please try again.")
     machine_data["ram"] = float(ram)
 
     return machine_data
@@ -77,7 +76,7 @@ while True:
         *errors, = map(str.upper, errors)
         errors = ", ".join(errors)
         print(f"Values of {errors} out valid range")
-        logging.error(f"Got {err.error_count} validation Errors {errors}")
+        logging.error(f"Got {err.error_count()} validation errors: {errors}")
         continue
     # Handle ValueError:
     except ValueError:
@@ -86,6 +85,7 @@ while True:
         continue
     # Handle unexpected errors
     except Exception as err:
+        logging.critical(err)
         print(err)
         print("Something went wrong.\nPlease try again")
         continue
@@ -94,14 +94,14 @@ while True:
     if not get_next == "y":
         break
 
-
+# Load old configuration
 old_machines = []
 try:
     logging.info("Loading old configurations")
     old_machines = file_utils.read()
 except Exception as err:
     logging.error("Configuration not loaded")
-    logging.error("Reason of error is " + err)
+    logging.debug(err)
 
 
 *new_machines, = map(lambda m: m.to_dict(), machines)
@@ -112,6 +112,6 @@ try:
     file_utils.write(all_machines,"./configs/instances.json")
 except Exception as err:
     logging.error("Configuration not saved")
-    logging.error("Reason of error is " + err)
+    logging.critical(err)
 
 logging.info("Script ended!")
