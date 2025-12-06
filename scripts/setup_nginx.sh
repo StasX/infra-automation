@@ -30,7 +30,7 @@ print(){
 }
 
 apt update -y
-# Install ngnix
+# Install nginx
 if [ $( apt list --installed -a  nginx | egrep -i '^nginx' | wc -l ) -eq 0 ]; then
     print 'Installation of NGINX started...'
     logging 'Installation of NGINX started...'
