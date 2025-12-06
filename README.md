@@ -30,6 +30,8 @@ The objectives of the project are:
 
 ## Example Expected Output
 ```
+Script execution started!
+
 Enter machine name:
 Enter OS (e.g., Linux / Windows):
 Enter number of CPU's (Any integer value up to 8): 
@@ -39,9 +41,18 @@ Press Y for yes:
 [Do you want to add new configuration to old configuration? for yes press Y: ]
 
 Configuration saved to configs/instances.json
-Provisioning started...
-Provisioning completed successfully.
-Running service setup script...
-Service installation completed.
-Logs written to logs/provisioning.log
+Running installation script...
+
+-----------------------------------------------
+Installation of NGINX started...
+-----------------------------------------------
+
+...
+...
+
+-----------------------------------------------
+Installation completed!
+-----------------------------------------------
+Installation completed...
+Script execution ended!
 ```
