@@ -1,6 +1,9 @@
 #!/bin/bash
+
+# logger
 logging(){
     DATE=$(date "+%Y-%m-%d %T,%3N")
+    # the function requires 1 or 2 arguments
     case $# in
     0)
         logging 'ERROR' 'No arguments passed to function logging in script setup_nginx.sh'
@@ -23,6 +26,7 @@ logging(){
     echo "$DATE - $SEVERITY - $MESSAGE">>logs/provisioning.log
 }
 
+# echo with separators
 print(){
     echo '-----------------------------------------------'
     echo $1
