@@ -4,6 +4,7 @@ import logging
 from pydantic import ValidationError
 import re
 import file_utils
+import subprocess
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', handlers = [logging.FileHandler('./logs/provisioning.log')])
@@ -114,4 +115,9 @@ except Exception as err:
     logging.error("Configuration not saved")
     logging.critical(err)
 
+try:
+    subprocess.run(["sudo","-S","bash","scripts/setup_nginx.sh"])
+except Exception as err:
+    logging.critical(err)
+    print("NGINX installation filed")
 logging.info("Script ended!")
