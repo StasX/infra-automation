@@ -63,7 +63,9 @@ def get_user_input():
     return machine_data
 
 
-logging.info("Script started!")
+logging.info("Script execution started!")
+print("Script execution started!")
+print()
 machines = []
 while True:
     try:
@@ -111,15 +113,18 @@ all_machines = [*old_machines, *new_machines]
 try:
     logging.info("Saving configuration")
     file_utils.write(all_machines,"./configs/instances.json")
+    print('Configuration saved to configs/instances.json')
 except Exception as err:
     logging.error("Configuration not saved")
     logging.critical(err)
 
 try:
-    logging.info("Running installation script")
+    logging.info("Running installation script...")
+    print("Running installation script...")
     subprocess.run(["sudo","-s","bash","scripts/setup_nginx.sh"])
-    logging.info("Installation script finished")
+    logging.info("Installation completed...")
 except Exception as err:
     logging.critical(err)
     print("NGINX installation filed")
-logging.info("Script ended!")
+logging.info("Script execution ended!")
+print("Script execution ended!")
