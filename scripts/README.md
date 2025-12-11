@@ -1,1 +1,0 @@
-## This directory will contain bash scripts for automation
