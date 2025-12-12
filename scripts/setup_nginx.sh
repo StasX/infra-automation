@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 # logger
 logging(){
     DATE=$(date "+%Y-%m-%d %T,%3N")
