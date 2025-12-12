@@ -40,7 +40,6 @@ Main Python script that runs the provisioning simulator.
 - Logs all provisioning steps and errors to `logs/provisioning.log`
 - Handles append vs overwrite modes when saving configurations
 
-
 ### `machine.py`
 Defines the **Machine** class used to represent a virtual machine.
 
@@ -50,3 +49,30 @@ Responsibilities include:
 - Logging machine creation events
 - Serving as the foundation for more advanced provisioning logic later
 
+### `resources.py`
+Defines the available system resources and constraints for virtual machines.
+
+**Purpose**
+- Provide predefined limits and allowed values used for validation
+- Centralize resource definitions so they can be updated in one place
+
+**Contents**
+- `os`  
+  - A list of supported operating systems  
+    ```python
+    ["Linux", "Windows"]
+    ```
+- `cpu`  
+  - Maximum number of CPUs a machine can have  
+    ```python
+    cpu = 8
+    ```
+- `ram`  
+  - Maximum RAM capacity (in GiB) a machine can be assigned  
+    ```python
+    ram = 192
+    ```
+
+**Usage**
+- Imported by `infra_simulator.py` to validate user input  
+- Ensures consistent constraints across the entire provisioning system  
