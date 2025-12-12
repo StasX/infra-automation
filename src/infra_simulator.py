@@ -97,8 +97,10 @@ except Exception as err:
 try:
     logging.info("Running installation script...")
     print("Running installation script...")
-    subprocess.run(["sudo", "-s", "bash", "scripts/setup_nginx.sh"])
-    logging.info("Installation completed...")
+    result = subprocess.run(["sudo", "-s", "bash", "scripts/setup_nginx.sh"])
+    if result.returncode:
+        logging.critical(err)
+        print("NGINX installation filed")
 except Exception as err:
     logging.critical(err)
     print("NGINX installation filed")
