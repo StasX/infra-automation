@@ -54,7 +54,7 @@ while True:
         errors = map(lambda e: e["loc"][0], errors)
         *errors, = map(str.upper, errors)
         errors = ", ".join(errors)
-        print(f"Values of {errors} out valid range")
+        print(f"Value/s of {errors} is/are invalid")
         logging.error(f"Got {err.error_count()} validation errors: {errors}")
         continue
     # Handle ValueError:
