@@ -7,59 +7,35 @@ import file_utils
 import subprocess
 
 # Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', handlers = [logging.FileHandler('./logs/provisioning.log')])
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s',
+                    handlers=[logging.FileHandler('./logs/provisioning.log')])
 
 
 def get_user_input():
     machine_data = {}
     # Get new machine
-    name = None
-    while True:
-        name = input("Enter machine name: ").strip()
-        logging.info(f"User entered machine name: {name}")
-        if len(name):
-            break
-        logging.warning("Machine name is empty")
-        print("You not entered machine name. Please try again")
+    name = input("Enter machine name: ").strip()
+    logging.info(f"User entered machine name: {name}")
     machine_data["name"] = name
 
     # Get OS
     os_to_display = " / ".join(resources.os)
-    os = None
-    while True:
-        os = input(f"Enter OS (e.g. {os_to_display}): ").strip()
-        # I assume that OS in lowercase and starts with capital letter
-        os = os.lower().capitalize()
-        logging.info(f"User entered OS: {os}")
-        if os in resources.os:
-            break
-        logging.warning(f"OS {os} not available")
-        print("OS not available. Please try again")
+    os = input(f"Enter OS (e.g. {os_to_display}): ").strip()
+    # I assume that OS in lowercase and starts with capital letter
+    os = os.lower().capitalize()
+    logging.info(f"User entered OS: {os}")
     machine_data["os"] = os
 
     # Get number CPU's
-    cpu = None
-    while True:
-        cpu = input(
-            f"Enter number of CPU's (Any integer value up to {resources.cpu}): ").strip()
-        logging.info(f"User entered number of CPU's: {cpu}")
-        if cpu.isnumeric():
-            break
-        logging.warning("Number of CPU's is not a number")
-        print("Number of CPU's should be a number. Please try again.")
+    cpu = input(
+        f"Enter number of CPU's (Any integer value up to {resources.cpu}): ").strip()
+    logging.info(f"User entered number of CPU's: {cpu}")
     machine_data["cpu"] = int(cpu)
 
     # Get RAM capacity
-    ram = None
-    while True:
-        ram = input("Enter RAM capacity in GiB : ").strip()
-        logging.info(f"User entered RAM capacity: {ram}")
-        if re.match(r"^\d+(\.\d+)?$", ram):
-            break
-        logging.warning("Invalid RAM capacity")
-        print("RAM should be a number. Please try again.")
+    ram = input("Enter RAM capacity in GiB : ").strip()
+    logging.info(f"User entered RAM capacity: {ram}")
     machine_data["ram"] = float(ram)
-
     return machine_data
 
 
@@ -112,7 +88,7 @@ all_machines = [*old_machines, *new_machines]
 # Save machines configuration
 try:
     logging.info("Saving configuration")
-    file_utils.write(all_machines,"./configs/instances.json")
+    file_utils.write(all_machines, "./configs/instances.json")
     print('Configuration saved to configs/instances.json')
 except Exception as err:
     logging.error("Configuration not saved")
@@ -121,7 +97,7 @@ except Exception as err:
 try:
     logging.info("Running installation script...")
     print("Running installation script...")
-    subprocess.run(["sudo","-s","bash","scripts/setup_nginx.sh"])
+    subprocess.run(["sudo", "-s", "bash", "scripts/setup_nginx.sh"])
     logging.info("Installation completed...")
 except Exception as err:
     logging.critical(err)
