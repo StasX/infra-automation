@@ -1,3 +1,6 @@
+"""
+Provides helper functions for reading and writing VM configuration
+"""
 import os
 import json
 def read():

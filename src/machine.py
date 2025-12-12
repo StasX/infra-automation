@@ -1,4 +1,6 @@
-
+"""
+Defines Machine class that represents a virtual machine and provides helper methods for exporting its data.
+"""
 from pydantic_core import PydanticCustomError
 from pydantic import BaseModel, field_validator
 import resources
