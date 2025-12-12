@@ -1,4 +1,4 @@
-# src Directory
+# Source Directory
 
 This directory contains all Python source code for the Infrastructure Provisioning & Automation Simulator.  
 It is the core of the application and manages user interaction, validation, logging, and the provisioning workflow.

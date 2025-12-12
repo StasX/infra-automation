@@ -1,4 +1,4 @@
-# scripts Directory
+# Scripts Directory
 
 This directory contains Bash script used for **nginx** installation.  
 This script simulate service installation and configuration steps for provisioned virtual machines.
