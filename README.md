@@ -14,7 +14,7 @@ The objectives of the project are:
 ## Setup & Execution Instructions
 
 ### 1. Project Setup
-1. Clone the repository  
+1. Clone the repository:  `https://github.com/StasX/infra-automation.git`
 2. Create and activate a Python virtual environment  
 3. Install required Python dependencies
 

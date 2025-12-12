@@ -24,22 +24,8 @@ Utility module that handles reading and writing VM configuration files.
 - Return previously saved configurations if the user chooses "Y"
 - Write updated configuration data back to a specified JSON file
 
-**Functions**
-- `read()`  
-  - Determines the absolute path of `instances.json`  
-  - Checks if the file exists  
-  - Prompts the user:  
-    *"Do you want to add new configuration to old configuration? for yes press Y:"*  
-  - If confirmed, loads and returns the existing list of machines  
-  - Otherwise returns an empty list  
-
-- `write(data, path)`  
-  - Writes Python data structures (list/dict) to the given JSON file  
-  - Overwrites the file completely  
-  - Serializes data using `json.dumps()`
-
 **Notes**
-- Keeps file I/O logic separate from business logic in `infra_simulator.py`  
+- Keeps file I/O logic separate from main logic in `infra_simulator.py`  
 - Ensures clean and modular project structure  
 - File paths are resolved dynamically using `os.path`  
 
